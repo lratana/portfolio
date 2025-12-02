@@ -1,5 +1,23 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({ works: { type: Object, required: true } })
+const { t } = useI18n()
+
+// Map known project IDs to i18n keys
+const projectKeyMap = new Map([
+  ['health-system', 'works.projects.healthSystem'],
+  ['enterprise-app', 'works.projects.enterpriseApp'],
+  ['mobile-app', 'works.projects.mobileApp'],
+])
+
+function translateProjectField(project, field) {
+  const base = projectKeyMap.get(project.id)
+  if (!base) return project[field]
+  const key = `${base}.${field}`
+  const translated = t(key)
+  return translated || project[field]
+}
 </script>
 
 <template>
@@ -8,9 +26,9 @@ const props = defineProps({ works: { type: Object, required: true } })
       <div class="flex items-end justify-between mb-12">
         <div>
           <h2 class="text-4xl md:text-5xl font-extrabold mb-2">
-            <span class="gradient-text">{{ works.title }}</span>
+            <span class="gradient-text">{{ t('works.title') }}</span>
           </h2>
-          <p class="text-gray-600">{{ works.note }}</p>
+          <p class="text-gray-600">{{ t('works.note') }}</p>
         </div>
       </div>
 
@@ -42,7 +60,7 @@ const props = defineProps({ works: { type: Object, required: true } })
               <span
                 class="px-6 py-3 bg-white text-brand-700 font-bold rounded-xl shadow-lg hover:shadow-glow transition-all duration-300"
               >
-                View Project →
+                {{ t('works.viewProject') }} →
               </span>
             </div>
           </div>
@@ -51,9 +69,9 @@ const props = defineProps({ works: { type: Object, required: true } })
             <h3
               class="font-bold text-xl mb-1 group-hover:text-brand-700 transition-colors duration-300"
             >
-              {{ w.title }}
+              {{ translateProjectField(w, 'title') }}
             </h3>
-            <p class="text-sm text-gray-600 mb-4">{{ w.subtitle }}</p>
+            <p class="text-sm text-gray-600 mb-4">{{ translateProjectField(w, 'subtitle') }}</p>
 
             <div class="flex flex-wrap gap-2">
               <span

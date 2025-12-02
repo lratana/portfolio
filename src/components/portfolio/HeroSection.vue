@@ -1,5 +1,8 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({ hero: { type: Object, required: true } })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -19,28 +22,28 @@ const props = defineProps({ hero: { type: Object, required: true } })
           <span
             class="inline-block w-8 h-0.5 bg-gradient-to-r from-brand-600 to-transparent"
           ></span>
-          {{ hero.greeting }}
+          {{ t('hero.greeting') }}
         </p>
 
         <h1
           class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight animate-slide-up"
           style="animation-delay: 0.1s"
         >
-          <span class="gradient-text">{{ hero.name }}</span>
+          <span class="gradient-text">{{ t('name') }}</span>
         </h1>
 
         <p
           class="text-xl md:text-2xl text-gray-700 font-medium animate-fade-in"
           style="animation-delay: 0.2s"
         >
-          {{ hero.tagline }}
+          {{ t('hero.tagline') }}
         </p>
 
         <p
           class="text-[var(--vt-c-text-light-2)] text-lg leading-relaxed animate-fade-in"
           style="animation-delay: 0.3s"
         >
-          {{ hero.bio }}
+          {{ t('hero.bio') }}
         </p>
 
         <div class="flex gap-8 my-8 animate-slide-up" style="animation-delay: 0.4s">
@@ -51,7 +54,7 @@ const props = defineProps({ hero: { type: Object, required: true } })
               {{ s.value }}<span v-if="s.suffix">{{ s.suffix }}</span>
             </div>
             <div class="text-xs text-gray-600 uppercase tracking-wider font-semibold mt-1">
-              {{ s.label }}
+              {{ i === 0 ? t('hero.stats.yearsExperience') : t('hero.stats.projectsCompleted') }}
             </div>
           </div>
         </div>
@@ -61,7 +64,7 @@ const props = defineProps({ hero: { type: Object, required: true } })
           class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-accent-purple text-white font-bold text-lg hover:shadow-glow-lg hover:scale-105 transition-all duration-300 animate-bounce-subtle group"
           style="animation-delay: 0.5s; background-size: 200% 100%"
         >
-          <span>Say hello</span>
+          <span>{{ t('hero.sayHello') }}</span>
           <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">👋</span>
         </a>
       </div>

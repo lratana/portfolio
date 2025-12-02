@@ -13,6 +13,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Apply Battambang font when Khmer language is active */
+  html[lang="km"] {
+    font-family: 'Battambang', 'Noto Sans Khmer', sans-serif;
+  }
+
+  html[lang="km"] * {
+    font-family: 'Battambang', 'Noto Sans Khmer', sans-serif;
+  }
 }
 
 @layer components {

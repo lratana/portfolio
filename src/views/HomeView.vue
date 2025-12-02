@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { usePortfolioData } from '@/composables/usePortfolioData'
 import HeaderNav from '@/components/portfolio/HeaderNav.vue'
 import HeroSection from '@/components/portfolio/HeroSection.vue'
@@ -10,10 +10,16 @@ import ExperienceTimeline from '@/components/portfolio/ExperienceTimeline.vue'
 import WorksGallery from '@/components/portfolio/WorksGallery.vue'
 import TestimonialsSection from '@/components/portfolio/TestimonialsSection.vue'
 import FooterSection from '@/components/portfolio/FooterSection.vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
+import { useParallax } from '../composables/useParallax'
 
 const { data, loading, error, load } = usePortfolioData()
 onMounted(() => {
   load()
+  // Initialize scroll reveal once the view mounts
+  useScrollAnimation()
+  // Initialize parallax for any elements with .parallax-on-scroll
+  useParallax()
 })
 </script>
 

@@ -1,5 +1,40 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({ experience: { type: Object, required: true } })
+const { t } = useI18n()
+
+// Map known companies to i18n base keys for entry-specific translation
+const companyKeyMap = new Map([
+  ['Ministry of Health', 'experience.entries.ministryOfHealth'],
+  ['Ecoinsoft Company CO.,Ltd', 'experience.entries.ecoinsoft'],
+  ['PT Prak Chantoeun CO.,Ltd', 'experience.entries.prakChantoeun'],
+  ['Svay Rieng University', 'experience.entries.svayRiengUniversity'],
+])
+
+function translateEntryField(entry, field) {
+  const base = companyKeyMap.get(entry.company)
+  if (!base) return entry[field]
+  const key = `${base}.${field}`
+  const translated = t(key)
+  return translated || entry[field]
+}
+
+function translateRoleField(entry, roleIndex, field) {
+  const base = companyKeyMap.get(entry.company)
+  if (!base) return entry.roles[roleIndex][field]
+  const key = `${base}.roles.${roleIndex}.${field}`
+  const translated = t(key)
+  return translated || entry.roles[roleIndex][field]
+}
+
+function translateHighlight(entry, roleIndex, highlightIndex, fallback) {
+  const base = companyKeyMap.get(entry.company)
+  if (!base) return fallback
+  const key = `${base}.roles.${roleIndex}.highlights.${highlightIndex}`
+  const translated = t(key)
+  return translated || fallback
+}
 </script>
 
 <template>
@@ -7,7 +42,7 @@ const props = defineProps({ experience: { type: Object, required: true } })
     <div class="max-w-[1100px] mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-slide-up">
-          <span class="gradient-text">{{ experience.title }}</span>
+          <span class="gradient-text">{{ t('experience.title') }}</span>
         </h2>
         <div
           class="w-20 h-1 bg-gradient-to-r from-brand-600 to-accent-purple mx-auto rounded-full"
@@ -45,26 +80,31 @@ const props = defineProps({ experience: { type: Object, required: true } })
                   <h3
                     class="text-2xl font-bold bg-gradient-to-r from-brand-700 to-brand-900 bg-clip-text text-transparent"
                   >
-                    {{ entry.company }}
+                    {{ translateEntryField(entry, 'company') }}
                   </h3>
                   <span
                     v-if="entry.location"
                     class="text-sm text-gray-600 flex items-center gap-1 mt-1"
                   >
-                    <span class="text-brand-500">📍</span> {{ entry.location }}
+                    <span class="text-brand-500">📍</span>
+                    {{ translateEntryField(entry, 'location') }}
                   </span>
                 </div>
                 <span
                   class="text-xs font-semibold bg-gradient-to-r from-brand-600 to-accent-purple text-white px-4 py-2 rounded-full shadow-sm"
                 >
-                  {{ entry.period }}
+                  {{ translateEntryField(entry, 'period') }}
                 </span>
               </div>
 
               <div class="space-y-6">
                 <div v-for="(r, j) in entry.roles" :key="j">
-                  <h4 class="text-xl font-bold text-brand-700 mb-2">{{ r.title }}</h4>
-                  <p class="text-gray-700 leading-relaxed mb-4">{{ r.summary }}</p>
+                  <h4 class="text-xl font-bold text-brand-700 mb-2">
+                    {{ translateRoleField(entry, j, 'title') }}
+                  </h4>
+                  <p class="text-gray-700 leading-relaxed mb-4">
+                    {{ translateRoleField(entry, j, 'summary') }}
+                  </p>
 
                   <ul class="space-y-2.5">
                     <li
@@ -76,7 +116,7 @@ const props = defineProps({ experience: { type: Object, required: true } })
                         class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-brand-500 to-accent-purple text-white text-xs font-bold mt-0.5 group-hover/item:scale-110 transition-transform duration-300 flex-shrink-0"
                         >✓</span
                       >
-                      <span class="flex-1">{{ h }}</span>
+                      <span class="flex-1">{{ translateHighlight(entry, j, k, h) }}</span>
                     </li>
                   </ul>
                 </div>

@@ -1,5 +1,8 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({ services: { type: Object, required: true } })
+const { t } = useI18n()
 
 const icons = ['🌐', '📱', '🎨']
 </script>
@@ -9,7 +12,7 @@ const icons = ['🌐', '📱', '🎨']
     <div class="max-w-[1200px] mx-auto">
       <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-slide-up">
-          <span class="gradient-text">{{ services.title }}</span>
+          <span class="gradient-text">{{ t('services.title') }}</span>
         </h2>
         <div
           class="w-20 h-1 bg-gradient-to-r from-brand-600 to-accent-purple mx-auto rounded-full"
@@ -52,7 +55,7 @@ const icons = ['🌐', '📱', '🎨']
                 class="inline-block w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-xs"
                 >{{ s.projects }}</span
               >
-              <span>Projects Completed</span>
+              <span>{{ t('services.projectsCompleted') }}</span>
             </div>
           </div>
         </article>
