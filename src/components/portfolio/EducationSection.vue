@@ -57,7 +57,9 @@ function translateEducationField(item, field) {
             <div class="relative z-10">
               <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
                 <div class="flex-1">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-1">{{ translateEducationField(item, 'degree') }}</h3>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-1">
+                    {{ translateEducationField(item, 'degree') }}
+                  </h3>
                   <p class="text-brand-700 font-semibold flex items-center gap-2">
                     <span class="text-lg">🎓</span>
                     {{ translateEducationField(item, 'institution') }}
@@ -70,7 +72,9 @@ function translateEducationField(item, field) {
                 </span>
               </div>
 
-              <p class="text-gray-700 leading-relaxed">{{ translateEducationField(item, 'description') }}</p>
+              <p class="text-gray-700 leading-relaxed">
+                {{ translateEducationField(item, 'description') }}
+              </p>
             </div>
           </div>
         </div>
