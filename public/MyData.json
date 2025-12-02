@@ -2,7 +2,7 @@
   "site": {
     "brand": {
       "name": "LONG RATANA",
-      "logo": "/images/logo.svg"
+      "logo": "/images/Ratana.png"
     },
     "navigation": [
       { "label": "Skills", "to": "#skills" },
@@ -28,7 +28,7 @@
     "name": "LONG RATANA",
     "tagline": "Full-stack developer building innovative web and mobile solutions.",
     "bio": "Computer Science graduate specializing in Vue.js, Flutter, and Node.js development with experience in government and enterprise projects.",
-    "avatar": "/images/profile.svg",
+    "avatar": "/images/MyPicture.jpg",
     "email": "lratana85@gmail.com",
     "yearsExperience": 4,
     "certification": {
@@ -152,7 +152,7 @@
     "timeline": [
       {
         "company": "Ministry of Health",
-        "location": "Cambodia",
+        "location": "Toul Kork, Phnom Penh, Cambodia",
         "period": "2022 – Present",
         "roles": [
           {
@@ -168,7 +168,7 @@
       },
       {
         "company": "Ecoinsoft Company CO.,Ltd",
-        "location": "Cambodia",
+        "location": "Phnom Penh, Cambodia",
         "period": "2021 – 2022",
         "roles": [
           {
@@ -184,7 +184,7 @@
       },
       {
         "company": "PT Prak Chantoeun CO.,Ltd",
-        "location": "Cambodia",
+        "location": "Phnom Penh, Cambodia",
         "period": "2021",
         "roles": [
           {

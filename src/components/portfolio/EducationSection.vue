@@ -1,5 +1,25 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps({ education: { type: Object, required: true } })
+const { t } = useI18n()
+
+// Map known education entries to i18n keys
+const educationKeyMap = new Map([
+  ['Advanced Microsoft Excel Course', 'education.entries.advancedExcel'],
+  ['Computer Graphic Design', 'education.entries.graphicDesign'],
+  ['Bachelor Degree in Computer Science', 'education.entries.bachelorCS'],
+  ['High School Diploma', 'education.entries.highSchool'],
+  ['Secondary School Certificate', 'education.entries.secondarySchool'],
+])
+
+function translateEducationField(item, field) {
+  const base = educationKeyMap.get(item.degree)
+  if (!base) return item[field]
+  const key = `${base}.${field}`
+  const translated = t(key)
+  return translated || item[field]
+}
 </script>
 
 <template>
@@ -7,7 +27,7 @@ const props = defineProps({ education: { type: Object, required: true } })
     <div class="max-w-[1100px] mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-slide-up">
-          <span class="gradient-text">{{ education.title }}</span>
+          <span class="gradient-text">{{ t('education.title') }}</span>
         </h2>
         <div
           class="w-20 h-1 bg-gradient-to-r from-brand-600 to-accent-purple mx-auto rounded-full"
@@ -37,20 +57,20 @@ const props = defineProps({ education: { type: Object, required: true } })
             <div class="relative z-10">
               <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
                 <div class="flex-1">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-1">{{ item.degree }}</h3>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-1">{{ translateEducationField(item, 'degree') }}</h3>
                   <p class="text-brand-700 font-semibold flex items-center gap-2">
                     <span class="text-lg">🎓</span>
-                    {{ item.institution }}
+                    {{ translateEducationField(item, 'institution') }}
                   </p>
                 </div>
                 <span
                   class="text-sm font-bold bg-gradient-to-r from-brand-600 to-accent-purple text-white px-4 py-2 rounded-full shadow-sm whitespace-nowrap"
                 >
-                  {{ item.year }}
+                  {{ translateEducationField(item, 'year') }}
                 </span>
               </div>
 
-              <p class="text-gray-700 leading-relaxed">{{ item.description }}</p>
+              <p class="text-gray-700 leading-relaxed">{{ translateEducationField(item, 'description') }}</p>
             </div>
           </div>
         </div>
