@@ -3,7 +3,7 @@ import en from './locales/en.json'
 import km from './locales/km.json'
 
 const savedLocale = typeof window !== 'undefined' ? localStorage.getItem('locale') : null
-const locale = savedLocale || 'en'
+const locale = savedLocale || 'km'
 
 export const i18n = createI18n({
   legacy: false,
