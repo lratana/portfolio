@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { RouterView } from 'vue-router'
 import { fetchWorkExperience } from '@/api/workExperience'
 
 const repos = ref([])
@@ -36,6 +37,7 @@ onMounted(async () => {
       </div>
     </div>
   </section>
+  <RouterView />
 </template>
 
 <style scoped>

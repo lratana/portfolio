@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue'
+import { RouterView } from 'vue-router'
 import { usePortfolioData } from '@/composables/usePortfolioData'
 import HeaderNav from '@/components/portfolio/HeaderNav.vue'
 import HeroSection from '@/components/portfolio/HeroSection.vue'
@@ -34,6 +35,7 @@ onMounted(() => {
       <TestimonialsSection :testimonials="data.testimonials" />
       <FooterSection :footer="data.footer" :cta="data.cta" />
     </template>
+    <RouterView />
   </div>
 </template>
 
