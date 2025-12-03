@@ -32,7 +32,9 @@ onMounted(async () => {
       </div>
 
       <div v-if="loading" class="text-center py-10">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
+        <div
+          class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"
+        ></div>
         <p class="mt-4 text-gray-600">{{ t('githubProjects.loading') }}</p>
       </div>
 
@@ -48,7 +50,9 @@ onMounted(async () => {
           :style="`animation-delay: ${idx * 0.05}s`"
         >
           <div class="flex items-start justify-between mb-4">
-            <h3 class="text-xl font-bold text-gray-900 group-hover:text-brand-700 transition-colors duration-300 flex-1">
+            <h3
+              class="text-xl font-bold text-gray-900 group-hover:text-brand-700 transition-colors duration-300 flex-1"
+            >
               {{ repo.name }}
             </h3>
             <span

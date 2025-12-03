@@ -28,7 +28,9 @@ onMounted(async () => {
           <div v-for="repo in repos" :key="repo.id" class="border rounded-lg p-6 bg-gray-50">
             <h3 class="font-bold text-xl mb-2">{{ repo.name }}</h3>
             <p class="text-gray-700 mb-2">{{ repo.description }}</p>
-            <a :href="repo.html_url" target="_blank" class="text-brand-600 underline">View on GitHub</a>
+            <a :href="repo.html_url" target="_blank" class="text-brand-600 underline"
+              >View on GitHub</a
+            >
           </div>
         </div>
       </div>
