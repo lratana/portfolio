@@ -24,7 +24,7 @@ onMounted(async () => {
     <div class="max-w-[1200px] mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 animate-slide-up">
-          <span class="gradient-text">GitHub Projects</span>
+          <span class="gradient-text">{{ t('githubProjects.title') }}</span>
         </h2>
         <div
           class="w-20 h-1 bg-gradient-to-r from-brand-600 to-accent-purple mx-auto rounded-full"
@@ -33,7 +33,7 @@ onMounted(async () => {
 
       <div v-if="loading" class="text-center py-10">
         <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
-        <p class="mt-4 text-gray-600">Loading repositories...</p>
+        <p class="mt-4 text-gray-600">{{ t('githubProjects.loading') }}</p>
       </div>
 
       <div v-else-if="error" class="text-center text-red-500 py-10 bg-red-50 rounded-lg">
@@ -60,7 +60,7 @@ onMounted(async () => {
           </div>
 
           <p class="text-gray-700 text-sm mb-4 line-clamp-3">
-            {{ repo.description || 'No description available' }}
+            {{ repo.description || t('githubProjects.noDescription') }}
           </p>
 
           <div class="flex flex-wrap gap-2 mb-4">
@@ -78,7 +78,7 @@ onMounted(async () => {
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-semibold text-sm transition-all duration-300 hover:gap-3"
           >
-            View on GitHub
+            {{ t('githubProjects.viewOnGithub') }}
             <span>→</span>
           </a>
         </article>

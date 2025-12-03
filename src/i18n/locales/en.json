@@ -215,5 +215,11 @@
     "quickLinks": "Quick Links",
     "copyright": "© 2025 LONG RATANA. All Rights Reserved",
     "credits": "Built with Vue.js & Tailwind CSS"
+  },
+  "githubProjects": {
+    "title": "GitHub Projects",
+    "loading": "Loading repositories...",
+    "viewOnGithub": "View on GitHub",
+    "noDescription": "No description available"
   }
 }
